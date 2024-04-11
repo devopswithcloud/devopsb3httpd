@@ -8,5 +8,10 @@ pipeline {
                 echo "First Pipleline"
             }
         }
+        stage ('fortify') {
+            steps {
+                echo "Executing scans!!!!!!"
+            }
+        }
     }
 }
