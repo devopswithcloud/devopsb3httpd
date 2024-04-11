@@ -3,14 +3,24 @@
 pipeline {
     agent any
     stages {
-        stage ('GitSCM') {
+        stage ('Build') {
             steps {
-                echo "First Pipleline"
+                echo "Build Pipleline"
             }
         }
-        stage ('fortify') {
+        stage ('Scans') {
             steps {
-                echo "Executing scans!!!!!!"
+                echo "Scans Pipleline"
+            }
+        }
+        stage ('dockerbuild') {
+            steps {
+                echo "Docker Pipleline"
+            }
+        }
+        stage ('devdeploy') {
+            steps {
+                echo "dev Pipleline"
             }
         }
     }
