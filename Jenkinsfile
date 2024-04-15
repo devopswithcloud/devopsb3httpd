@@ -1,5 +1,4 @@
-// based on the branch condition, i can create the pipeline
-// BRANCH_NAME variable is only available in Multi Branch pipeline/Git hub or pipleines 
+//allOf
 
 pipeline {
     agent any 
@@ -15,8 +14,11 @@ pipeline {
         }
         stage ('ProdDeploy') {
             when {
-                // brnach condition
-                expression { BRANCH_NAME ==~ /(production|staging)/ }
+                allOf {
+                    branch 'production'
+                    environment name: 'DEPLOY_TO', value: 'production'
+                }
+
             }
             steps {
                 echo "Deploying to production"
