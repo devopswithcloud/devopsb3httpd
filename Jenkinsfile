@@ -1,37 +1,31 @@
-//allOf
-
 pipeline {
     agent any 
-    environment {
-        // our own custom env variables
-        DEPLOY_TO = 'xyz'
-    }
     stages {
-        stage ('DepoyToDev') {
+        stage ('Build') {
             steps {
-                echo "Deploying to Dev Environment"
+                echo "Building the application"
             }
         }
-        stage ('DepoyToTest') {
-            steps {
-                echo "Deploying to Test Environment"
-            }
-        }
-        stage ('DeployToStage') {
-            when {
-                branch 'release/*'
-            }
-            steps {
-                echo "Deploying to Stage Env"
-            }
-        }
-        stage ('DeployToProd') {
-            when {
-                // vx.x.x
-                tag pattern: "v\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}", comparator: "REGEXP"
-            }
-            steps {
-                echo "Deploying to Stage Env"
+        stage ('ParallelStageScans') {
+            parallel {
+                stage ('Sonar') {
+                    steps {
+                        echo "Sonar Stage Executing"
+                        sleep 10
+                    }
+                }
+                stage ('Fortify') {
+                    steps {
+                        echo "Sonar Fortify Executing"
+                        sleep 10
+                    }
+                }
+                stage ('Prisma') {
+                    steps {
+                        echo "Sonar Prisma Executing"
+                        sleep 10
+                    }
+                }
             }
         }
     }
