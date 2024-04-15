@@ -1,39 +1,17 @@
+// when condition
+// https://www.jenkins.io/doc/book/pipeline/syntax/#when
 pipeline {
-    agent any
+    agent any 
+    environment {
+        DEPLOY_TO = 'production'
+    }
     stages {
-        stage ('Build') {
-            steps {
-                echo "Build Pipleline"
+        stage ('ProdDeploy') {
+            when {
+                environment name: 'DEPLOY_TO', value: 'other'
             }
-        }
-        stage ('Scans') {
             steps {
-                echo "Scans Pipleline"
-            }
-        }
-        stage ('dockerbuild') {
-            steps {
-                echo "Docker Pipleline"
-            }
-        }
-        stage ('devdeploy') {
-            steps {
-                echo "dev Pipleline"
-            }
-        }
-        stage ('DeploytoTest') {
-            steps {
-                echo "Test Pipleline"
-            }
-        }
-        stage ('DeployToStage') {
-            steps {
-                echo "Stage Pipleline"
-            }
-        }
-        stage ('ProdDeployment') {
-            steps {
-                echo "Prod Pipleline"
+                echo "Deploying to production"
             }
         }
     }
