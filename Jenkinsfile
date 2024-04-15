@@ -14,7 +14,8 @@ pipeline {
         }
         stage ('ProdDeploy') {
             when {
-                allOf {
+                anyOf {
+                    // 10 contions, then all the 10 conitions should be satisfied
                     branch 'production'
                     environment name: 'DEPLOY_TO', value: 'production'
                 }
