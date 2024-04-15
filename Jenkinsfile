@@ -1,5 +1,3 @@
-// when condition
-// https://www.jenkins.io/doc/book/pipeline/syntax/#when
 pipeline {
     agent any 
     environment {
@@ -9,8 +7,9 @@ pipeline {
     stages {
         stage ('ProdDeploy') {
             when {
-                equals expected: 5, actual: currentBuild.number
-                // environment name: 'DEPLOY_TO', value: 'production'
+                not {
+                    equals expected:"prod" , actual: "${DEPLOY_TO}"
+                }
             }
             steps {
                 echo "Deploying to production"
