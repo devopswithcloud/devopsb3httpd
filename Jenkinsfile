@@ -16,7 +16,7 @@ pipeline {
         stage ('ProdDeploy') {
             when {
                 // brnach condition
-                expression { BRANCH_NAME == /(production|staging)/ }
+                expression { BRANCH_NAME ==~ /(production|staging)/ }
             }
             steps {
                 echo "Deploying to production"
