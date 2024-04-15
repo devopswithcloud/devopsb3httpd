@@ -12,17 +12,26 @@ pipeline {
                 echo "Deploying to Dev Environment"
             }
         }
-        stage ('ProdDeploy') {
+        stage ('DepoyToTest') {
+            steps {
+                echo "Deploying to Test Environment"
+            }
+        }
+        stage ('DeployToStage') {
             when {
-                anyOf {
-                    // 10 contions, then all the 10 conitions should be satisfied
-                    branch 'production'
-                    environment name: 'DEPLOY_TO', value: 'production'
-                }
-
+                branch 'release/*'
             }
             steps {
-                echo "Deploying to production"
+                echo "Deploying to Stage Env"
+            }
+        }
+        stage ('DeployToProd') {
+            when {
+                // vx.x.x
+                tag pattern "v\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}"
+            }
+            steps {
+                echo "Deploying to Stage Env"
             }
         }
     }
