@@ -4,7 +4,7 @@ pipeline {
     agent any 
     environment {
         // our own custom env variables
-        DEPLOY_TO = 'production'
+        DEPLOY_TO = 'xyz'
     }
     stages {
         stage ('DepoyToDev') {
