@@ -10,7 +10,7 @@ pipeline {
         password (name: 'SECRET', defaultValue: 'SECUREPASSWORD', description: "Enter the Password")
     } 
     stages {
-        stage {'ParametesExample'} {
+        stage ('ParametesExample') {
             steps {
                 echo "Welcome ${params.NAME}"
                 echo "Fixes done are: ${params.PARA}"
@@ -22,5 +22,3 @@ pipeline {
         }
     }
 }
-
-git -b  clone httsp://github.com/microservices/cart.git
