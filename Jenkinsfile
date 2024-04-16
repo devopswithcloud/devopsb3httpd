@@ -5,7 +5,7 @@ pipeline {
 
     parameters {
         string(name: 'NAME', defaultValue: 'Siva' , description: 'Name of the Person' )
-        choice(name: 'NS', choices: ['default, 'boa-ns'] , description: "Select the namespace u want to go with ?")
+        choice(name: 'NS', choices: ['default', 'boa-ns'] , description: "Select the namespace u want to go with ?")
         string(name: 'SIZE', defaultValue: '10' , description: 'Enter the PVC Size u want ???' )
         text(name: "PARA", defaultValue: '', description: 'Enter highlevel fixes for the release')
         choice(name: 'ENV', choices: ['dev', 'Test', 'Prod'] , description: "Which Env would you like to deploy")
