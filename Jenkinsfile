@@ -7,7 +7,7 @@ pipeline {
         text(name: "PARA", defaultValue: '', description: 'Enter highlevel fixes for the release')
         choice(name: 'ENV', choices: ['dev', 'Test', 'Prod'] , description: "Which Env would you like to deploy")
         booleanParam(name: 'TOOGLE', defaultValue: true, description: "Would you like to scan")
-        password (name: 'SECRET', defaultValue: 'SECUREPASSWORD', description: "Enter the Password")
+        password(name: 'SECRET', defaultValue: 'SECUREPASSWORD', description: "Enter the Password")
     } 
     stages {
         stage ('ParametesExample') {
