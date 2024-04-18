@@ -1,31 +1,25 @@
-// input
-https://www.jenkins.io/doc/book/pipeline/syntax/#input
-
+// https://www.jenkins.io/doc/book/pipeline/syntax/#post
 pipeline {
     agent any 
     stages {
         stage ('Build') {
-            steps {
-                echo "Building the app"
-            }
+            echo "Building the application"
         }
-        stage ('Test') {
-            steps {
-                echo "testing the app"
-            }
+    }
+    post {
+        // Only Run this , when the currennt pipleline or stage has a success status
+        success {
+            echo "Post =======> Success is triggered"
         }
-        stage ('DeployToDev') {
-            steps {
-                echo "Deploying to Dev env"
-            }
+        // Only runs when the current pipeline or stage is having a failure status
+        failure {
+            cho "Post =======> Failure got triggered"
         }
-        stage ('DeployToProd') {
-            steps {
-                timeout (time: 300, unit: 'SECONDS') {
-                     input message: 'Would you like to Promote to prod ??', ok: 'yes', submitter: 'maha'
-                }
-                echo "Deploying the app to Production"
-            }
+        // This will run irrespective of failure or succes....meaning everytime
+        always {
+            //block 
+            echo "post ========> ALways got triggered"
         }
+
     }
 }
