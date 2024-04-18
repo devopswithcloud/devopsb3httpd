@@ -13,7 +13,7 @@ pipeline {
         }
         // Only runs when the current pipeline or stage is having a failure status
         failure {
-            cho "Post =======> Failure got triggered"
+            echo "Post =======> Failure got triggered"
         }
         // This will run irrespective of failure or succes....meaning everytime
         always {
