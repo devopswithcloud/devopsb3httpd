@@ -17,7 +17,7 @@ pipeline {
                 def body = "Build Number is: ${currentBuild.number}\n" + "Status is: ${currentBuild.currentResult}\n" + "Job URL: ${env.BUILD_URL}"
                 mail (
                     to: 'i27k8s10@gmail.com',
-                    subject: subject
+                    subject: subject,
                     body: body
                     )
             }
